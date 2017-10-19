@@ -1,0 +1,94 @@
+.index-hero {
+	filter: brightness(65%); }
+
+.index-hero img {
+	width: 100%;
+	margin-top: -9px; }
+
+.hero > h1 {
+	position: absolute;
+	color: #ffffff;
+	top: 27%;
+	padding-top: 2%;
+	padding-left: 12%; 
+	font-size: 200%;
+	font-weight: 100;
+	width: 50%;
+	height: 6%; }
+
+#subtext {
+	font-size: 60%;
+	font-weight: 100; 
+	line-height: 0.3;
+	width: 50px !important;}
+
+.hero > h3 {
+	position: absolute;
+	top: 45%;
+	margin-left: 12.3%; 
+	border: 2px solid #ffa79b;
+	border-radius: 10px;
+	padding: 0.75%;
+	font-weight: 100;}
+
+.delivery {
+	margin: 2%;
+	padding: 4% 15%;
+	height: 220px;
+	border: 2px solid #ffa79b; }
+
+.delivery-icons {
+	float: left;
+	width: 180px;
+	padding-top: 6.5%;
+	padding-left: 15%; }
+
+#airplane {
+	float: left; }
+
+#house {
+	float: right; }
+
+.delivery-text {
+	float: right;
+	width: 35%;
+	padding-right: 8%; 
+	color: #575757;}
+
+.delivery-text h1 {
+	font-size: 150%; }
+
+#browse {
+	margin-top: 7%; }
+
+.new-locations {
+	background-color: #575757;
+	height: 400px;
+}
+
+.new-locations h1 {
+	margin-left: 12%;
+	padding-top: 5%;
+	padding-bottom: 2%; 
+	font-weight: 100;}
+
+.new-locations p {
+	color: #ffffff;
+	font-weight: 100;
+	float: right;
+}
+
+.location-pic {
+	float: left;
+	margin-right: 20px;
+}
+
+.shadyside {
+	float: left;
+	margin-left: 12%;
+}
+
+.squirrel-hill {
+	float: right;
+	margin-right: 12%;
+}

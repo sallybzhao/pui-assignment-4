@@ -1,0 +1,96 @@
+.subnav {
+	float: left;
+	margin-left: -13%;
+	margin-top: 4%;
+}
+
+.subnav ul {
+	list-style-type: none;
+}
+
+.subnav li {
+	display: block;
+	font-size: 120%;
+}
+
+.products {
+	float: right;
+	margin-top: 4%;
+	border-left: 2px solid #ffa79b;
+	padding-left: 7%;
+	padding-right: 5%;
+}
+
+.short-line {
+	border: 2px solid #ffa79b;
+	width: 297px;
+	height: 0px;
+	display: inline-block;
+}
+
+.seasonal {
+	display: inline;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.classic {
+	display: inline;
+	margin-left: 35px;
+	margin-right: 35px;
+}
+
+.specialty {
+	display: inline;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.products p {
+	color: #575757;
+}
+
+table td img {
+	margin-right: 50px;
+	margin-left: 5px;
+}
+
+table td p {
+	margin-top: 3%;
+	margin-left: 2%;
+}
+
+/* Pumpkin Spice CSS */
+
+.items {
+	border-left: 2px solid #ffa79b;
+	float: right;
+	width: 70%;
+	margin: 4% 0%;
+	padding: 0% 5%;
+
+}
+
+.item {
+	border: 2px solid #ffa79b;
+	padding: 4%;
+	
+}
+
+.item-description {
+	width: 60%;
+	float: right;
+	margin-top: -4%;
+}
+
+.small-button {
+	border: 2px solid #ffa79b;
+	border-radius: 10px;
+	padding: 1% 3%;
+	font-weight: 100; }
+
+.cart {
+	margin-top: 5.5%;
+}
+
+
