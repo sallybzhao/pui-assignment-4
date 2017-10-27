@@ -98,7 +98,7 @@ $(document).ready( function() {
 	$("#single").click( function() {
 		$("#product-name").text("ORIGINAL (single)"); 
 		$("#bun-price").text("1.50");
-		$("#bun-img").attr("src", "images/original.png");
+		$("#bun-img").attr("src", "images/Original.png");
 		$("#bun-descript").text(origDescription);
 		$(".add-flavor").css({"display": "none"});
 		$(".flavors").text("");
