@@ -1,0 +1,15 @@
+.bun-options h3 {
+	display: inline;
+	margin-right: 3%;
+	font-size: 1em;
+}
+
+.active {
+	background-color: #ffa79b;
+	color: #ffffff;
+}
+
+.add-flavor {
+	display: none;
+}
+

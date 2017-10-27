@@ -1,43 +1,61 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Bun Bun</title>
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-		<link href = "css/styles.css" type = "text/css" rel = "stylesheet"/>
-		<link href = "css/products-style.css" type = "text/css" rel = "stylesheet" />
-		<link rel="shortcut icon" href="images/icon.png">
-	</head>
+<head>
+	<title>Bun Bun</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+	<link href = "css/styles.css" type = "text/css" rel = "stylesheet"/>
+	<link href = "css/products-style.css" type = "text/css" rel = "stylesheet" />
+	<link href = "css/detail-style.css" type = "text/css" rel = "stylesheet" />
+	<link rel="shortcut icon" href="images/icon.png">
+	<script src="js/jquery-3.2.1.min.js"> </script>
+	<script src="js/main.js"> </script>
+</head>
 
-	<body>
-		<div class="header">
-			<a href="index.html" class="logo"> <img src="images/cinnamon-roll.png" alt="Bun Bun Bake Shop" /> <span class="logo-text"> bunbun </span> </a>
-			<div class="nav">
-				<a href="about.html">About</a>  <a href="products.html">Products</a>  <a href="javascript:void(0);">Contact</a>  <a href="javascript:void(0);"> <img src="images/shopping-cart.png" alt="Shopping cart" /> </a>
-			</div>
-		</div><!-- .header -->
+<body>
+	<div class="header">
+		<a href="index.html" class="logo"> <img src="images/cinnamon-roll.png" alt="Bun Bun Bake Shop" /> <span class="logo-text"> bunbun </span> </a>
+		<div class="nav">
+			<a href="about.html">About</a>  <a href="products.html">Products</a>  <a href="javascript:void(0);" id="contact">Contact</a>  <a href="shopping_cart.html"> <img src="images/shopping-cart.png" alt="Shopping cart" /> <span class="badge"> </span></a>
+		</div>
+	</div><!-- .header -->
 
-		<div class ="wrapper">
-			<div class="subnav">
-				<ul>
-					<li class="gray"> OUR FLAVORS </li>
-					<li ><a href="products.html#seasonal" class="gray"> &nbsp;&nbsp;&nbsp; SEASONAL</a> </li> 
-					<li><a href="products.html#classic" class="gray"> &nbsp;&nbsp;&nbsp; CLASSIC </a></li>
-					<li><a href="products.html#specialty" class="gray"> &nbsp;&nbsp;&nbsp; SPECIALTY </a></li>
-				</ul>
-			</div><!-- .subnav -->
+	<div class ="wrapper">
+		<div class="subnav">
+			<ul>
+				<li class="gray"> OUR FLAVORS </li>
+				<li ><a href="products.html#seasonal" class="gray"> &nbsp;&nbsp;&nbsp; SEASONAL</a> </li> 
+				<li><a href="products.html#classic" class="gray"> &nbsp;&nbsp;&nbsp; CLASSIC </a></li>
+				<li><a href="products.html#specialty" class="gray"> &nbsp;&nbsp;&nbsp; SPECIALTY </a></li>
+			</ul>
+		</div><!-- .subnav -->
 
-			<div class="items">
-				<div class="item">
-					<img src="images/Original.png" alt="" />
-					<div class="item-description gray"> 
-						<h1 > ORIGINAL </h1>
-						<p> Our original cinnamon rolls have won the hearts of many across the nation. A soft and buttery dough is baked to perfection with cinnamon sugar, topped with a simple glaze. </p>
-						<p> Price: $1.50 </p>
-						<p> Quantity &nbsp; <span class="small-button"> 1 </span>
-						<h3 class="cart"> <span class="small-button"> <a href="javascript:void(0);" class="pink"> Add to Cart</a></h3></p> 
+		<div class="items">
+			<div class="item">
+				<img src="images/Original.png" alt="" id="bun-img"/>
+				<div class="item-description gray"> 
+					<h1 id="product-name"> ORIGINAL </h1>
+					<p id="bun-descript"> Our original cinnamon rolls have won the hearts of many across the nation. A soft, buttery dough is baked to perfection with cinnamon sugar, topped with a simple glaze. </p>
+					<div class="bun-options">
+						<h3 > <span class="small-button hover-fill"> <a href="javascript:void(0);" class="pink" id="single"> Single </a></span></h3>
+						<h3 > <span class="small-button hover-fill"> <a href="javascript:void(0);" class="pink" id="6-pack"> 6-pack</a></span></h3>
+						<h3 > <span class="small-button hover-fill"> <a href="javascript:void(0);" class="pink" id="12-pack"> 12-pack</a></span></h3>
+					</div> <!-- end bun options -->
+					
+					<p> Price: $<span id="bun-price">1.50 </span></p>
+					<p class="add-flavor">Additional Flavors
+						<select>
+							<option value="pumpkin-spice">Pumpkin Spice</option>
+							<option value="buttermilk">Old Fashioned Buttermilk</option>
+							<option value="caramel-pecan">Caramel Pecan</option>
+						</select>
+					</p>
+					<p> Quantity &nbsp; 
+						<input type="text" name="quantity" id="quantity">
+						<!-- <h3 class="cart">  --><span class="small-button hover-fill"> <a href="javascript:void(0);" class="pink " id="add-to-cart"> Add to Cart</a></span>
+					</p>
 					</div>
-				</div>
+				</div><!-- end item-description -->
 
 				<br/> <br/>
 
@@ -72,4 +90,4 @@
 		</div><!-- .footer -->
 
 	</body>
-</html>
+	</html>
