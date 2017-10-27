@@ -1,4 +1,4 @@
-var id = 0;
+//var id = 0;
 
 /* Object Constructor */
 function Item(name, price, image, descript, quantity, firstFlavor, secFlavor, id) {
@@ -12,50 +12,61 @@ function Item(name, price, image, descript, quantity, firstFlavor, secFlavor, id
 	this.secFlavor = secFlavor;
 }
 
+function getNextId() {
+	var storedItems = JSON.parse(localStorage.getItem("items"));
+	if (storedItems.length == 0) {
+		return 0;
+	} else {
+		var lastItem = storedItems.pop();
+		return lastItem.id + 1;
+	}
+}
+
+	// this function is called every time user edits storedItems (add/remove)
+function updateList() {
+	$(".cart-products").empty();
+	var cartTotal = 0.00;
+	var storedItems = JSON.parse(localStorage.getItem("items"));
+	if (storedItems != null) {
+		$(".badge").text(storedItems.length);
+		storedItems.forEach( function(storedItem) {
+			// calculate cart total from price and quantity
+			var total = (parseInt(storedItem.quantity) * parseFloat(storedItem.price)).toFixed(2);
+			cartTotal += parseFloat(total);
+			// dynamically add html based on number of storedItems
+			var cartItem = `<div class="cart-item">
+								<img src="` + storedItem.image + `" alt="" class="item-img" id="cart-image"/>
+								<div class="item-description">
+									<div class="left-descript">
+										<h3 id="cart-name">` + storedItem.name + `</h3>
+										<span id="cart-flavors"> Additional Flavors: ` + storedItem.firstFlavor + " , " + storedItem.secFlavor +  `</span>
+										<p id="price-row"> Price: $<span id="cart-price">` + storedItem.price + `</span> each </p>
+										<p id="quantity-row"> Quantity: &nbsp; <span id="cart-quantity">` + storedItem.quantity + `</span></p>
+									</div>
+									<div class="right-descript">
+										<p>Total: $<span id="cart-total">` + total + `</span></p>
+										<h3> <span class="small-button hover-fill"> <a href="javascript:void(0);" class="pink" id="remove"><span id="remove-id">` + storedItem.id + `</span> Remove</a></span></h3>
+									</div>
+								</div> 
+							</div>
+							<span class="divider" ><hr/></span>`;
+			$(".cart-products").append(cartItem);
+		});
+		
+		// checkout information
+		cartTotal = cartTotal.toFixed(2);
+		var tax = (cartTotal * 0.085).toFixed(2);
+		var shipping = (cartTotal * 0.15).toFixed(2);
+		$("#total").text(cartTotal);
+		$("#tax").text(tax);
+		$("#shipping").text(shipping);
+		var grandTotal = parseFloat(cartTotal) + parseFloat(shipping) + parseFloat(tax);
+		$("#grand-total").text(grandTotal.toFixed(2));
+	}
+}
+
 /* Document Load */
 $(document).ready( function() {
-	// this function is called every time user edits storedItems (add/remove)
-	function updateList() {
-		var cartTotal = 0.00;
-		var storedItems = JSON.parse(localStorage.getItem("items"));
-		if (storedItems != null) {
-			$(".badge").text(storedItems.length);
-			storedItems.forEach( function(storedItem) {
-				// calculate cart total from price and quantity
-				var total = (parseInt(storedItem.quantity) * parseFloat(storedItem.price)).toFixed(2);
-				cartTotal += parseFloat(total);
-				// dynamically add html based on number of storedItems
-				var cartItem = `<div class="cart-item">
-									<img src="` + storedItem.image + `" alt="" class="item-img" id="cart-image"/>
-									<div class="item-description">
-										<div class="left-descript">
-											<h3 id="cart-name">` + storedItem.name + `</h3>
-											<span id="cart-flavors"> Additional Flavors: ` + storedItem.firstFlavor + " , " + storedItem.secFlavor +  `</span>
-											<p id="price-row"> Price: $<span id="cart-price">` + storedItem.price + `</span> each </p>
-											<p id="quantity-row"> Quantity: &nbsp; <span id="cart-quantity">` + storedItem.quantity + `</span></p>
-										</div>
-										<div class="right-descript">
-											<p>Total: $<span id="cart-total">` + total + `</span></p>
-											<h3> <span class="small-button hover-fill"> <a href="javascript:void(0);" class="pink" id="remove"><span id="remove-id">` + storedItem.id + `</span> Remove</a></span></h3>
-										</div>
-									</div> 
-								</div>
-								<span class="divider" ><hr/></span>`;
-				$(".cart-products").append(cartItem);
-			});
-			
-			// checkout information
-			cartTotal = cartTotal.toFixed(2);
-			var tax = (cartTotal * 0.085).toFixed(2);
-			var shipping = (cartTotal * 0.15).toFixed(2);
-			$("#total").text(cartTotal);
-			$("#tax").text(tax);
-			$("#shipping").text(shipping);
-			var grandTotal = parseFloat(cartTotal) + parseFloat(shipping) + parseFloat(tax);
-			$("#grand-total").text(grandTotal.toFixed(2));
-		}
-	}
-
 	// button hover animation
 	$(".hover-fill").hover( 
 		function() {
@@ -140,7 +151,7 @@ $(document).ready( function() {
 		var firstFlavor = $("#first-flavor").val();
 		var secFlavor = $("#second-flavor").val();
 		// construct an item with these attributes
-		//var id = getId();
+		var id = getNextId();
 		var item = new Item(name, price, image, descript, quantity, firstFlavor, secFlavor, id);
 
 		var itemArray = JSON.parse(localStorage.getItem("items"));
@@ -163,15 +174,14 @@ $(document).ready( function() {
 
 // for dynamically created html
 $(document).on("click", "#remove", function() {
-
-	var itemToRemove = $("#remove-id").text();
-	console.log(itemToRemove);
+	var itemToRemove = $(this).text().split(" ")[0];
 	var itemArray = JSON.parse(localStorage.getItem("items"));
-	itemArray = $.grep(itemArray, function(value) {
-		return value.id != itemToRemove;
+	var newArray = itemArray.filter( function(item) {
+		return item.id != itemToRemove;
 	});
-	var jsonItems = JSON.stringify(itemArray);
+	var jsonItems = JSON.stringify(newArray);
 	localStorage.setItem("items", jsonItems);
+	updateList();
 });
 
 
