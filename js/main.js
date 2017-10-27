@@ -16,12 +16,14 @@ function Item(name, price, image, descript, quantity, firstFlavor, secFlavor, id
 $(document).ready( function() {
 	// this function is called every time user edits storedItems (add/remove)
 	function updateList() {
+		var cartTotal = 0.00;
 		var storedItems = JSON.parse(localStorage.getItem("items"));
 		if (storedItems != null) {
 			$(".badge").text(storedItems.length);
 			storedItems.forEach( function(storedItem) {
 				// calculate cart total from price and quantity
 				var total = (parseInt(storedItem.quantity) * parseFloat(storedItem.price)).toFixed(2);
+				cartTotal += parseFloat(total);
 				// dynamically add html based on number of storedItems
 				var cartItem = `<div class="cart-item">
 									<img src="` + storedItem.image + `" alt="" class="item-img" id="cart-image"/>
@@ -29,17 +31,28 @@ $(document).ready( function() {
 										<div class="left-descript">
 											<h3 id="cart-name">` + storedItem.name + `</h3>
 											<span id="cart-flavors"> Additional Flavors: ` + storedItem.firstFlavor + " , " + storedItem.secFlavor +  `</span>
-											<p> Price: $<span id="cart-price">` + storedItem.price + `</span> each </p>
-											<p> Quantity &nbsp; <span id="cart-quantity">` + storedItem.quantity + `</span></p>
+											<p id="price-row"> Price: $<span id="cart-price">` + storedItem.price + `</span> each </p>
+											<p id="quantity-row"> Quantity: &nbsp; <span id="cart-quantity">` + storedItem.quantity + `</span></p>
 										</div>
 										<div class="right-descript">
 											<p>Total: $<span id="cart-total">` + total + `</span></p>
 											<h3> <span class="small-button hover-fill"> <a href="javascript:void(0);" class="pink" id="remove"><span id="remove-id">` + storedItem.id + `</span> Remove</a></span></h3>
 										</div>
 									</div> 
-								</div>`;
+								</div>
+								<span class="divider" ><hr/></span>`;
 				$(".cart-products").append(cartItem);
 			});
+			
+			// checkout information
+			cartTotal = cartTotal.toFixed(2);
+			var tax = (cartTotal * 0.085).toFixed(2);
+			var shipping = (cartTotal * 0.15).toFixed(2);
+			$("#total").text(cartTotal);
+			$("#tax").text(tax);
+			$("#shipping").text(shipping);
+			var grandTotal = parseFloat(cartTotal) + parseFloat(shipping) + parseFloat(tax);
+			$("#grand-total").text(grandTotal.toFixed(2));
 		}
 	}
 
@@ -114,13 +127,6 @@ $(document).ready( function() {
 		$("#bun-descript").css({"margin-top": "0"});
 		var firstValue = $("#first-flavor").val();
 		var secValue = $("#second-flavor").val();
-		if (secValue === "Birthday Cake") {
-			$("#second-flavor-img").attr("src", "images/Birthday AddFlavor.png") 
-			$(".item-description").addClass("shift-up");
-		} else {
-			$(".item-description").removeClass("shift-up");
-			$("#second-flavor-img").attr("src", "");
-		}
 		$(".flavors").text("Additional flavors: " + firstValue + ", " + secValue); 
 	});
 
@@ -138,7 +144,6 @@ $(document).ready( function() {
 		var item = new Item(name, price, image, descript, quantity, firstFlavor, secFlavor, id);
 
 		var itemArray = JSON.parse(localStorage.getItem("items"));
-		console.log(itemArray);
 		// first time adding to array
 		if (itemArray === null) {
 			itemArray = [];
@@ -147,7 +152,8 @@ $(document).ready( function() {
 		var jsonItems = JSON.stringify(itemArray);
 		// store item in localStorage so shopping cart can access it
 		localStorage.setItem("items", jsonItems);
-		console.log(localStorage.getItem("items"));
+		// clear quantity
+		$("#quantity").val("");
 		updateList();
 	});
 

@@ -5,6 +5,10 @@
 	margin-top: 3%;
 }
 
+.cart-item {
+	height: 130px;
+}
+
 .item-img {
 	width: 18%;
 	float: left;
@@ -39,10 +43,21 @@
 	margin-top: 1%;
 }
 
+#price-row {
+	margin-top: 5%;
+}
+
+#quantity-row {
+	margin-top: -5%;
+}
+
 #remove-id {
 	display: none;
 }
 
+.divider {
+	clear: both;
+}
 
 .checkout {
 	float: right;
