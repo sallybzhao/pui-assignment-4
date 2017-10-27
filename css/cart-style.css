@@ -21,6 +21,14 @@
 	margin-top: -2%;
 }
 
+#cart-name {
+	margin-bottom: 0px;
+}
+
+#cart-flavors {
+	font-size: 60%;
+}
+
 .left-descript {
 	float: left;
 }
@@ -29,6 +37,10 @@
 	float: right;
 	margin-right: 15%;
 	margin-top: 1%;
+}
+
+#remove-id {
+	display: none;
 }
 
 

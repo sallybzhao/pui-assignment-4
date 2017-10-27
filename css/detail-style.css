@@ -4,9 +4,29 @@
 	font-size: 1em;
 }
 
+.flavors {
+	font-size: 65%;
+	font-weight: 100;
+}
+
+#first-flavor-img {
+	position: relative;
+	top: -77px;
+}
+
+#second-flavor-img {
+	position: relative;
+	left: -77px;
+}
+
 .active {
 	background-color: #ffa79b;
 	color: #ffffff;
+}
+
+.shift-up {
+	position: relative;
+	top: -260px;
 }
 
 .add-flavor {

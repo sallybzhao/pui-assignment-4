@@ -33,8 +33,11 @@
 		<div class="items">
 			<div class="item">
 				<img src="images/Original.png" alt="" id="bun-img"/>
+				<img src="" id="first-flavor-img"/>
+				<img src="" id="second-flavor-img"/>
 				<div class="item-description gray"> 
-					<h1 id="product-name"> ORIGINAL </h1>
+					<h2 id="product-name"> ORIGINAL </h2>
+					<span class="flavors"> </span>
 					<p id="bun-descript"> Our original cinnamon rolls have won the hearts of many across the nation. A soft, buttery dough is baked to perfection with cinnamon sugar, topped with a simple glaze. </p>
 					<div class="bun-options">
 						<h3 > <span class="small-button hover-fill"> <a href="javascript:void(0);" class="pink" id="single"> Single </a></span></h3>
@@ -44,15 +47,47 @@
 					
 					<p> Price: $<span id="bun-price">1.50 </span></p>
 					<p class="add-flavor">Additional Flavors
-						<select>
-							<option value="pumpkin-spice">Pumpkin Spice</option>
-							<option value="buttermilk">Old Fashioned Buttermilk</option>
-							<option value="caramel-pecan">Caramel Pecan</option>
+						<select id="first-flavor">
+							<option value="">Select</option>
+							<option value="Bacon">Bacon</option>
+							<option value="Birthday Cake">Birthday Cake</option>
+							<option value="Blackberry">Blackberry</option>
+							<option value="Caramel Pecan">Caramel Pecan</option>
+							<option value="Carrot Cake">Carrot Cake</option>
+							<option value="Cranberry">Cranberry</option>
+							<option value="Lemon Lavender">Lemon Lavender</option>
+							<option value="Maple Apple Pecan">Maple Apple Pecan</option>
+							<option value="Old Fashioned Buttermilk">Old Fashioned Buttermilk</option>
+							<option value="Original (Gluten Free)">Original (Gluten Free)</option>
+							<option value="Original (Vegan)">Original (Vegan)</option>
+							<option value="Pumpkin Spice">Pumpkin Spice</option>
+							<option value="Strawberry">Strawberry</option>
+							<option value="Walnut">Walnut</option>
 						</select>
+
+						<select id="second-flavor">
+							<option value="">Select</option>
+							<option value="Bacon">Bacon</option>
+							<option value="Birthday Cake">Birthday Cake</option>
+							<option value="Blackberry">Blackberry</option>
+							<option value="Caramel Pecan">Caramel Pecan</option>
+							<option value="Carrot Cake">Carrot Cake</option>
+							<option value="Cranberry">Cranberry</option>
+							<option value="Lemon Lavender">Lemon Lavender</option>
+							<option value="Maple Apple Pecan">Maple Apple Pecan</option>
+							<option value="Old Fashioned Buttermilk">Old Fashioned Buttermilk</option>
+							<option value="Original (Gluten Free)">Original (Gluten Free)</option>
+							<option value="Original (Vegan)">Original (Vegan)</option>
+							<option value="Pumpkin Spice">Pumpkin Spice</option>
+							<option value="Strawberry">Strawberry</option>
+							<option value="Walnut">Walnut</option>
+						</select>
+
+						
 					</p>
 					<p> Quantity &nbsp; 
 						<input type="text" name="quantity" id="quantity">
-						<!-- <h3 class="cart">  --><span class="small-button hover-fill"> <a href="javascript:void(0);" class="pink " id="add-to-cart"> Add to Cart</a></span>
+						<!-- <h3 class="cart">  --><span class="small-button hover"> <a href="javascript:void(0);" class="pink " id="add-to-cart"> Add to Cart</a></span>
 					</p>
 					</div>
 				</div><!-- end item-description -->
@@ -61,7 +96,7 @@
 
 				<div id="seasonal">
 					<span class="short-line"> </span>
-					<h1 class="gray seasonal"> YOU MAY ALSO LIKE </h1> 
+					<h2 class="gray seasonal"> YOU MAY ALSO LIKE </h2> 
 					<span class="short-line"> </span> <br/> <br/>
 					<table>
 						<tr>
@@ -76,8 +111,6 @@
 				<br/> <br/>
 
 			</div><!-- .products -->
-
-
 
 		</div><!-- .wrapper -->
 
