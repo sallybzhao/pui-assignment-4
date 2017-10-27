@@ -22,6 +22,8 @@ function getNextId() {
 			var lastItem = storedItems.pop();
 			return lastItem.id + 1;
 		}
+	} else {
+		return 0;
 	}
 }
 
