@@ -15,11 +15,13 @@ function Item(name, price, image, descript, quantity, firstFlavor, secFlavor, id
 // find the next ID in the sequence (for Item constructor)
 function getNextId() {
 	var storedItems = JSON.parse(localStorage.getItem("items"));
-	if (storedItems.length == 0) {
-		return 0;
-	} else {
-		var lastItem = storedItems.pop();
-		return lastItem.id + 1;
+	if (storedItems != null) {
+		if (storedItems.length == 0) {
+			return 0;
+		} else {
+			var lastItem = storedItems.pop();
+			return lastItem.id + 1;
+		}
 	}
 }
 
