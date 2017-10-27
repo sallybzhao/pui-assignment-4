@@ -1,5 +1,3 @@
-//var id = 0;
-
 /* Object Constructor */
 function Item(name, price, image, descript, quantity, firstFlavor, secFlavor, id) {
 	this.id = id;
@@ -12,6 +10,9 @@ function Item(name, price, image, descript, quantity, firstFlavor, secFlavor, id
 	this.secFlavor = secFlavor;
 }
 
+/* Functions */
+
+// find the next ID in the sequence (for Item constructor)
 function getNextId() {
 	var storedItems = JSON.parse(localStorage.getItem("items"));
 	if (storedItems.length == 0) {
@@ -22,11 +23,12 @@ function getNextId() {
 	}
 }
 
-	// this function is called every time user edits storedItems (add/remove)
+// this function is called every time user edits storedItems (add/remove)
 function updateList() {
 	$(".cart-products").empty();
 	var cartTotal = 0.00;
 	var storedItems = JSON.parse(localStorage.getItem("items"));
+	// update number of items in cart in badge icon
 	if (storedItems != null) {
 		$(".badge").text(storedItems.length);
 		storedItems.forEach( function(storedItem) {
@@ -45,7 +47,7 @@ function updateList() {
 									</div>
 									<div class="right-descript">
 										<p>Total: $<span id="cart-total">` + total + `</span></p>
-										<h3> <span class="small-button hover-fill"> <a href="javascript:void(0);" class="pink" id="remove"><span id="remove-id">` + storedItem.id + `</span> Remove</a></span></h3>
+										<h3> <span class="small-button hover"> <a href="javascript:void(0);" class="pink" id="remove"><span id="remove-id">` + storedItem.id + `</span> Remove</a></span></h3>
 									</div>
 								</div> 
 							</div>
@@ -53,7 +55,7 @@ function updateList() {
 			$(".cart-products").append(cartItem);
 		});
 		
-		// checkout information
+		// dynamically calculate checkout information
 		cartTotal = cartTotal.toFixed(2);
 		var tax = (cartTotal * 0.085).toFixed(2);
 		var shipping = (cartTotal * 0.15).toFixed(2);
@@ -65,16 +67,11 @@ function updateList() {
 	}
 }
 
+
 /* Document Load */
 $(document).ready( function() {
-	// button hover animation
-	$(".hover-fill").hover( 
-		function() {
-			$(this).children().css({"color": "#ffffff"});
-		}, function() {
-			$(this).children().css({"color": "#ffa79b"});
-	});
-
+	
+	// button hover animations
 	$(".hover").hover( 
 		function() {
 			$(this).css({"background-color": "#ffa79b"});
@@ -84,18 +81,18 @@ $(document).ready( function() {
 			$(this).children().css({"color": "#ffa79b"});
 	});
 
-	$(".hover-fill").click( function() {
-		$(".hover-fill").on("mouseenter mouseleave");
+	$(".fill").click( function() {
+		$(".fill").on("mouseenter mouseleave");
 		$(this).off("mouseenter mouseleave");
-		$(".hover-fill").removeClass("active");
-		$(".hover-fill").children().css({"color": "#ffa79b"});
-		$(this).addClass("active");
+		$(".fill").css({"background-color": "#ffffff"});
+		$(".fill").children().css({"color": "#ffa79b"});
+		$(this).css({"background-color": "#ffa79b"});
 		$(this).children().css({"color": "#ffffff"});
 	});
 
 
-	var origDescription = "Our original cinnamon rolls have won the hearts of many across the nation. A soft, buttery dough is baked to perfection with cinnamon sugar, topped with a simple glaze."
 	// change product info based on user's selection
+	var origDescription = "Our original cinnamon rolls have won the hearts of many across the nation. A soft, buttery dough is baked to perfection with cinnamon sugar, topped with a simple glaze."
 	$("#single").click( function() {
 		$("#product-name").text("ORIGINAL (single)"); 
 		$("#bun-price").text("1.50");
@@ -153,7 +150,6 @@ $(document).ready( function() {
 		// construct an item with these attributes
 		var id = getNextId();
 		var item = new Item(name, price, image, descript, quantity, firstFlavor, secFlavor, id);
-
 		var itemArray = JSON.parse(localStorage.getItem("items"));
 		// first time adding to array
 		if (itemArray === null) {
@@ -163,7 +159,7 @@ $(document).ready( function() {
 		var jsonItems = JSON.stringify(itemArray);
 		// store item in localStorage so shopping cart can access it
 		localStorage.setItem("items", jsonItems);
-		// clear quantity
+		// clear quantity after user adds to cart
 		$("#quantity").val("");
 		updateList();
 	});
@@ -174,12 +170,16 @@ $(document).ready( function() {
 
 // for dynamically created html
 $(document).on("click", "#remove", function() {
+
+	// create word array from text (i.e. "8 Remove") and only save first element which is the ID
 	var itemToRemove = $(this).text().split(" ")[0];
 	var itemArray = JSON.parse(localStorage.getItem("items"));
+	// filter itemArray and remove item that matches ID to remove
 	var newArray = itemArray.filter( function(item) {
 		return item.id != itemToRemove;
 	});
 	var jsonItems = JSON.stringify(newArray);
+	// reset storedItems to newArray
 	localStorage.setItem("items", jsonItems);
 	updateList();
 });

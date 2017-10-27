@@ -1,25 +1,19 @@
+/* three bun size buttons */
 .bun-options h3 {
 	display: inline;
 	margin-right: 3%;
-	font-size: 1em;
-}
+	font-size: 1em; }
 
+/* text detailing additional flavors */
 .flavors {
 	font-size: 65%;
-	font-weight: 100;
-}
+	font-weight: 100; }
 
 .active {
 	background-color: #ffa79b;
-	color: #ffffff;
-}
+	color: #ffffff; }
 
-.shift-up {
-	position: relative;
-	top: -260px;
-}
-
+/* add-flavor option only shows up for 6 and 12-pack */
 .add-flavor {
-	display: none;
-}
+	display: none; }
 
